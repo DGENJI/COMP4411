@@ -78,4 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="impressionist.dsp" />
+    <None Include="impressionist.opt" />
+    <None Include="impressionist.VC.db" />
+  </ItemGroup>
 </Project>
