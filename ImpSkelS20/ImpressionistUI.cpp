@@ -551,7 +551,7 @@ ImpressionistUI::ImpressionistUI() {
 		m_BrushLineAngleSlider->labelfont(FL_COURIER);
 		m_BrushLineAngleSlider->labelsize(12);
 		m_BrushLineAngleSlider->minimum(0);
-		m_BrushLineAngleSlider->maximum(40);
+		m_BrushLineAngleSlider->maximum(359);
 		m_BrushLineAngleSlider->step(1);
 		m_BrushLineAngleSlider->value(m_nAngle);
 		m_BrushLineAngleSlider->align(FL_ALIGN_RIGHT);
