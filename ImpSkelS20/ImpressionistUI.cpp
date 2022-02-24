@@ -497,6 +497,9 @@ ImpressionistUI::ImpressionistUI() {
 	// init values
 
 	m_nSize = 10;
+	m_nWidth = 1;
+	m_nAngle = 0;
+	m_nAlpha = 1.00;
 
 	// brush dialog definition
 	m_brushDialog = new Fl_Window(400, 325, "Brush Dialog");
@@ -547,7 +550,7 @@ ImpressionistUI::ImpressionistUI() {
 		m_BrushLineAngleSlider->type(FL_HOR_NICE_SLIDER);
 		m_BrushLineAngleSlider->labelfont(FL_COURIER);
 		m_BrushLineAngleSlider->labelsize(12);
-		m_BrushLineAngleSlider->minimum(1);
+		m_BrushLineAngleSlider->minimum(0);
 		m_BrushLineAngleSlider->maximum(40);
 		m_BrushLineAngleSlider->step(1);
 		m_BrushLineAngleSlider->value(m_nAngle);
