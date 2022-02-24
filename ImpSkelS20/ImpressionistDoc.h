@@ -30,6 +30,7 @@ public:
 	int     getWidth();                     // get the line width
 	void    setWidth(int width);            // set the line width
 	int     getAngle();                     // get the line Angle
+	double  getAlpha();                     // get the alpha
 	char*	getImageName();					// get the current image name
 	
 

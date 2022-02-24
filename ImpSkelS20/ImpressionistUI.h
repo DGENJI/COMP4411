@@ -58,9 +58,11 @@ public:
 	int					getSize();
 	int					getWidth();
 	int                 getAngle();
+	double              getAlpha();
 	void				setSize(int size);
 	void				setWidth(int width);
-	void                setAngle(int Angle);
+	void                setAngle(int angle);
+	void                setAlpha(double alpha);
 private:
 	ImpressionistDoc*	m_pDoc;		// pointer to document to communicate with the document
 
@@ -68,6 +70,7 @@ private:
 	int		m_nSize;
 	int		m_nWidth;
 	int     m_nAngle;
+	double  m_nAlpha;
 
 	// Static class members
 	static Fl_Menu_Item		menuitems[];
@@ -88,6 +91,9 @@ private:
 	static void	cb_strokeDirectionChoice(Fl_Widget* o, void* v);
 	static void	cb_clear_canvas_button(Fl_Widget* o, void* v);
 	static void	cb_sizeSlides(Fl_Widget* o, void* v);
+	static void	cb_widthSlides(Fl_Widget* o, void* v);
+	static void	cb_angleSlides(Fl_Widget* o, void* v);
+	static void	cb_alphaSlides(Fl_Widget* o, void* v);
 
 };
 

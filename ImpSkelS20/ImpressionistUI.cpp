@@ -280,6 +280,36 @@ void ImpressionistUI::cb_sizeSlides(Fl_Widget* o, void* v)
 	((ImpressionistUI*)(o->user_data()))->m_nSize=int( ((Fl_Slider *)o)->value() ) ;
 }
 
+//-----------------------------------------------------------
+// Updates the brush line width to use from the value of the size
+// slider
+// Called by the UI when the line width slider is moved
+//-----------------------------------------------------------
+void ImpressionistUI::cb_widthSlides(Fl_Widget* o, void* v)
+{
+	((ImpressionistUI*)(o->user_data()))->m_nWidth = int(((Fl_Slider*)o)->value());
+}
+
+//-----------------------------------------------------------
+// Updates the brush line angle to use from the value of the size
+// slider
+// Called by the UI when the line angle slider is moved
+//-----------------------------------------------------------
+void ImpressionistUI::cb_angleSlides(Fl_Widget* o, void* v)
+{
+	((ImpressionistUI*)(o->user_data()))->m_nAngle = int(((Fl_Slider*)o)->value());
+}
+
+//-----------------------------------------------------------
+// Updates the brush alphato use from the value of the size
+// slider
+// Called by the UI when the alpba slider is moved
+//-----------------------------------------------------------
+void ImpressionistUI::cb_alphaSlides(Fl_Widget* o, void* v)
+{
+	((ImpressionistUI*)(o->user_data()))->m_nAlpha = int(((Fl_Slider*)o)->value());
+}
+
 //---------------------------------- per instance functions --------------------------------------
 
 //------------------------------------------------
@@ -344,6 +374,14 @@ int ImpressionistUI::getAngle()
 	return m_nAngle;
 }
 
+//------------------------------------------------
+// Return the alpha
+//------------------------------------------------
+double ImpressionistUI::getAlpha()
+{
+	return m_nAlpha;
+}
+
 //-------------------------------------------------
 // Set the brush size
 //-------------------------------------------------
@@ -375,6 +413,17 @@ void ImpressionistUI::setAngle(int angle)
 
 	if (angle <= 359)
 		m_BrushLineAngleSlider->value(m_nAngle);
+}
+
+//-------------------------------------------------
+// Set the alpha
+//-------------------------------------------------
+void ImpressionistUI::setAlpha(double alpha)
+{
+	m_nAlpha = alpha;
+
+	if (m_nAlpha <= 1.00)
+		m_BrushAlphaSlider->value(m_nAlpha);
 }
 
 // Main menu definition
@@ -489,9 +538,9 @@ ImpressionistUI::ImpressionistUI() {
 		m_BrushLineWidthSlider->minimum(1);
 		m_BrushLineWidthSlider->maximum(40);
 		m_BrushLineWidthSlider->step(1);
-		m_BrushLineWidthSlider->value(m_nSize);
+		m_BrushLineWidthSlider->value(m_nWidth);
 		m_BrushLineWidthSlider->align(FL_ALIGN_RIGHT);
-		m_BrushLineWidthSlider->callback(cb_sizeSlides);
+		m_BrushLineWidthSlider->callback(cb_widthSlides);
 
 		m_BrushLineAngleSlider = new Fl_Value_Slider(10, 140, 300, 20, "Line Angle");
 		m_BrushLineAngleSlider ->user_data((void*)(this));	// record self to be used by static callback functions
@@ -501,9 +550,9 @@ ImpressionistUI::ImpressionistUI() {
 		m_BrushLineAngleSlider->minimum(1);
 		m_BrushLineAngleSlider->maximum(40);
 		m_BrushLineAngleSlider->step(1);
-		m_BrushLineAngleSlider->value(m_nSize);
+		m_BrushLineAngleSlider->value(m_nAngle);
 		m_BrushLineAngleSlider->align(FL_ALIGN_RIGHT);
-		m_BrushLineAngleSlider->callback(cb_sizeSlides);
+		m_BrushLineAngleSlider->callback(cb_angleSlides);
 
 		m_BrushAlphaSlider = new Fl_Value_Slider(10, 170, 300, 20, "Alpha");
 		m_BrushAlphaSlider->user_data((void*)(this));	// record self to be used by static callback functions
@@ -513,9 +562,9 @@ ImpressionistUI::ImpressionistUI() {
 		m_BrushAlphaSlider->minimum(0.00);
 		m_BrushAlphaSlider->maximum(1.00);
 		m_BrushAlphaSlider->step(0.01);
-		m_BrushAlphaSlider->value(m_nSize);
+		m_BrushAlphaSlider->value(m_nAlpha);
 		m_BrushAlphaSlider->align(FL_ALIGN_RIGHT);
-		m_BrushAlphaSlider->callback(cb_sizeSlides);
+		m_BrushAlphaSlider->callback(cb_alphaSlides);
     m_brushDialog->end();	
 
 }
