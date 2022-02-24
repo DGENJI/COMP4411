@@ -328,6 +328,22 @@ int ImpressionistUI::getSize()
 	return m_nSize;
 }
 
+//------------------------------------------------
+// Return the line width
+//------------------------------------------------
+int ImpressionistUI::getWidth()
+{
+	return m_nWidth;
+}
+
+//------------------------------------------------
+// Return the line angle
+//------------------------------------------------
+int ImpressionistUI::getAngle()
+{
+	return m_nAngle;
+}
+
 //-------------------------------------------------
 // Set the brush size
 //-------------------------------------------------
@@ -337,6 +353,28 @@ void ImpressionistUI::setSize( int size )
 
 	if (size<=40) 
 		m_BrushSizeSlider->value(m_nSize);
+}
+
+//-------------------------------------------------
+// Set the line width
+//-------------------------------------------------
+void ImpressionistUI::setWidth(int size)
+{
+	m_nWidth = size;
+
+	if (size <= 40)
+		m_BrushLineWidthSlider->value(m_nWidth);
+}
+
+//-------------------------------------------------
+// Set the brush size
+//-------------------------------------------------
+void ImpressionistUI::setAngle(int angle)
+{
+	m_nAngle = angle;
+
+	if (angle <= 40)
+		m_BrushLineAngleSlider->value(m_nAngle);
 }
 
 // Main menu definition
@@ -365,6 +403,14 @@ Fl_Menu_Item ImpressionistUI::brushTypeMenu[NUM_BRUSH_TYPE+1] = {
   {"Scattered Points",	FL_ALT+'q', (Fl_Callback *)ImpressionistUI::cb_brushChoice, (void *)BRUSH_SCATTERED_POINTS},
   {"Scattered Lines",	FL_ALT+'m', (Fl_Callback *)ImpressionistUI::cb_brushChoice, (void *)BRUSH_SCATTERED_LINES},
   {"Scattered Circles",	FL_ALT+'d', (Fl_Callback *)ImpressionistUI::cb_brushChoice, (void *)BRUSH_SCATTERED_CIRCLES},
+  {0}
+};
+
+// Stroke direction menu definition
+Fl_Menu_Item ImpressionistUI::strokeDirectionTypeMenu[4] = {
+  {"Points",			FL_ALT + 'p', (Fl_Callback*)ImpressionistUI::cb_brushChoice, (void*)BRUSH_POINTS},
+  {"Lines",				FL_ALT + 'l', (Fl_Callback*)ImpressionistUI::cb_brushChoice, (void*)BRUSH_LINES},
+  {"Circles",			FL_ALT + 'c', (Fl_Callback*)ImpressionistUI::cb_brushChoice, (void*)BRUSH_CIRCLES},
   {0}
 };
 
@@ -411,6 +457,11 @@ ImpressionistUI::ImpressionistUI() {
 		m_BrushTypeChoice->menu(brushTypeMenu);
 		m_BrushTypeChoice->callback(cb_brushChoice);
 
+		m_StrokeDirectionTypeChoice = new Fl_Choice(115, 45, 150, 25, "&Stroke Direction");
+		m_StrokeDirectionTypeChoice->user_data((void*)(this));	// record self to be used by static callback functions
+		m_StrokeDirectionTypeChoice->menu(brushTypeMenu);
+		m_StrokeDirectionTypeChoice->callback(cb_brushChoice);
+
 		m_ClearCanvasButton = new Fl_Button(240,10,150,25,"&Clear Canvas");
 		m_ClearCanvasButton->user_data((void*)(this));
 		m_ClearCanvasButton->callback(cb_clear_canvas_button);
@@ -429,6 +480,42 @@ ImpressionistUI::ImpressionistUI() {
 		m_BrushSizeSlider->align(FL_ALIGN_RIGHT);
 		m_BrushSizeSlider->callback(cb_sizeSlides);
 
+		// Add brush line width slider to the dialog 
+		m_BrushLineWidthSlider = new Fl_Value_Slider(10, 110, 300, 20, "Line Width");
+		m_BrushLineWidthSlider->user_data((void*)(this));	// record self to be used by static callback functions
+		m_BrushLineWidthSlider->type(FL_HOR_NICE_SLIDER);
+		m_BrushLineWidthSlider->labelfont(FL_COURIER);
+		m_BrushLineWidthSlider->labelsize(12);
+		m_BrushLineWidthSlider->minimum(1);
+		m_BrushLineWidthSlider->maximum(40);
+		m_BrushLineWidthSlider->step(1);
+		m_BrushLineWidthSlider->value(m_nSize);
+		m_BrushLineWidthSlider->align(FL_ALIGN_RIGHT);
+		m_BrushLineWidthSlider->callback(cb_sizeSlides);
+
+		m_BrushLineAngleSlider = new Fl_Value_Slider(10, 140, 300, 20, "Line Angle");
+		m_BrushLineAngleSlider ->user_data((void*)(this));	// record self to be used by static callback functions
+		m_BrushLineAngleSlider->type(FL_HOR_NICE_SLIDER);
+		m_BrushLineAngleSlider->labelfont(FL_COURIER);
+		m_BrushLineAngleSlider->labelsize(12);
+		m_BrushLineAngleSlider->minimum(1);
+		m_BrushLineAngleSlider->maximum(40);
+		m_BrushLineAngleSlider->step(1);
+		m_BrushLineAngleSlider->value(m_nSize);
+		m_BrushLineAngleSlider->align(FL_ALIGN_RIGHT);
+		m_BrushLineAngleSlider->callback(cb_sizeSlides);
+
+		m_BrushAlphaSlider = new Fl_Value_Slider(10, 170, 300, 20, "Alpha");
+		m_BrushAlphaSlider->user_data((void*)(this));	// record self to be used by static callback functions
+		m_BrushAlphaSlider->type(FL_HOR_NICE_SLIDER);
+		m_BrushAlphaSlider->labelfont(FL_COURIER);
+		m_BrushAlphaSlider->labelsize(12);
+		m_BrushAlphaSlider->minimum(0.00);
+		m_BrushAlphaSlider->maximum(1.00);
+		m_BrushAlphaSlider->step(0.01);
+		m_BrushAlphaSlider->value(m_nSize);
+		m_BrushAlphaSlider->align(FL_ALIGN_RIGHT);
+		m_BrushAlphaSlider->callback(cb_sizeSlides);
     m_brushDialog->end();	
 
 }
