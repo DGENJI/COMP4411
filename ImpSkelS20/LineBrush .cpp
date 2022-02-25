@@ -3,6 +3,7 @@
 #include "Linebrush.h"
 #include <math.h>
 #include <iostream>
+#include <time.h>
 
 extern float frand();
 
@@ -13,6 +14,10 @@ LineBrush::LineBrush(ImpressionistDoc* pDoc, char* name) :
 
 void LineBrush::BrushBegin(const Point source, const Point target)
 {
+	if(strokeDirectionType == BRUSH_DIRECTION)
+	{
+		originPoint = source;
+	}
 	BrushMove(source, target);
 }
 
@@ -44,6 +49,8 @@ void LineBrush::BrushMove(const Point source, const Point target)
 	{
 	case SRM:
 		glLineWidth((float)width);
+		srand((unsigned)time(NULL));
+		r = (rand() % 40 + 1);
 		glBegin(GL_LINES);
 		SetColor(source);
 		glVertex2d(target.x + r * cos(an), target.y + r * sin(an));
@@ -64,12 +71,14 @@ void LineBrush::BrushMove(const Point source, const Point target)
 		glEnd();
 		break;
 	case BRUSH_DIRECTION:
+		float angle = atan2((float)(source.y - originPoint.y) , (float)(source.x - originPoint.x));
 		glLineWidth((float)width);
 		glBegin(GL_LINES);
 		SetColor(source);
-		glVertex2d(target.x + r * cos(an), target.y + r * sin(an));
-		glVertex2d(target.x - r * cos(an), target.y - r * sin(an));
+		glVertex2d(target.x + r * cos(angle), target.y + r * sin(angle));
+		glVertex2d(target.x - r * cos(angle), target.y - r * sin(angle));
 		glEnd();
+		originPoint = source;
 		break;
 	}
 }
