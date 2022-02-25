@@ -75,13 +75,13 @@ void LineBrush::rightMouseMovementMove(const Point source, const Point target)
 
 void LineBrush::rightMouseMovementEnd(const Point source, const Point target)
 {
-	float angle = atan(abs((float)(source.y - originPoint.y)) / abs((float)(source.x - originPoint.x))) * 180.0f / 3.1415926;
-	if(source.x - originPoint.x < 0)
+	float angle = atan(((float)(source.y - originPoint.y)) / ((float)(source.x - originPoint.x))) * 180.0f / 3.1415926;
+	if (source.x - originPoint.x < 0)
 	{
-		angle = 180.0 - angle;
+		angle = 180.0 + angle;
 	}
-	else if (source.y - originPoint.y < 0) {
-		angle = 360.0 - angle;
+	else if(source.y - originPoint.y < 0) {
+		angle = 360.0 + angle;
 	}
 	ImpressionistDoc* pDoc = GetDocument();
 	pDoc->setAngle((int)angle);
