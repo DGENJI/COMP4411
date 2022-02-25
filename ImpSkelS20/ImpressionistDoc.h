@@ -25,11 +25,13 @@ public:
 
 	int     clearCanvas();                  // called by the UI to clear the drawing canvas
 	void	setBrushType(int type);			// called by the UI to set the brushType
+	void    setStrokeDirectionType(int type); // called by the UI to set the strokeDirectionType
 	int		getSize();						// get the UI size
 	void	setSize(int size);				// set the UI size
 	int     getWidth();                     // get the line width
 	void    setWidth(int width);            // set the line width
 	int     getAngle();                     // get the line Angle
+	void     setAngle(int angle);            // set the angle
 	double  getAlpha();                     // get the alpha
 	char*	getImageName();					// get the current image name
 	

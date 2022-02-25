@@ -258,6 +258,23 @@ void ImpressionistUI::cb_brushChoice(Fl_Widget* o, void* v)
 	pDoc->setBrushType(type);
 }
 
+//-------------------------------------------------------------
+// Sets the type of stroke direction to use to the one chosen in the brush 
+// choice.  
+// Called by the UI when a brush is chosen in the brush choice
+//-------------------------------------------------------------
+void ImpressionistUI::cb_strokeDirectionChoice(Fl_Widget* o, void* v)
+{
+	ImpressionistUI* pUI = ((ImpressionistUI*)(o->user_data()));
+	ImpressionistDoc* pDoc = pUI->getDocument();
+
+	int type = (int)v;
+
+
+	pDoc->setStrokeDirectionType(type);
+
+}
+
 //------------------------------------------------------------
 // Clears the paintview canvas.
 // Called by the UI when the clear canvas button is pushed
@@ -457,9 +474,9 @@ Fl_Menu_Item ImpressionistUI::brushTypeMenu[NUM_BRUSH_TYPE+1] = {
 
 // Stroke direction menu definition
 Fl_Menu_Item ImpressionistUI::strokeDirectionTypeMenu[4] = {
-  {"Points",			FL_ALT + 'p', (Fl_Callback*)ImpressionistUI::cb_brushChoice, (void*)BRUSH_POINTS},
-  {"Lines",				FL_ALT + 'l', (Fl_Callback*)ImpressionistUI::cb_brushChoice, (void*)BRUSH_LINES},
-  {"Circles",			FL_ALT + 'c', (Fl_Callback*)ImpressionistUI::cb_brushChoice, (void*)BRUSH_CIRCLES},
+  {"Slider/Right Mouse",			FL_ALT + 'p', (Fl_Callback*)ImpressionistUI::cb_strokeDirectionChoice, (void*)SRM},
+  {"Gradient",				FL_ALT + 'l', (Fl_Callback*)ImpressionistUI::cb_strokeDirectionChoice, (void*)GRADIENT},
+  {"Brush Direction",			FL_ALT + 'c', (Fl_Callback*)ImpressionistUI::cb_strokeDirectionChoice, (void*)BRUSH_DIRECTION},
   {0}
 };
 
@@ -511,8 +528,8 @@ ImpressionistUI::ImpressionistUI() {
 
 		m_StrokeDirectionTypeChoice = new Fl_Choice(115, 45, 150, 25, "&Stroke Direction");
 		m_StrokeDirectionTypeChoice->user_data((void*)(this));	// record self to be used by static callback functions
-		m_StrokeDirectionTypeChoice->menu(brushTypeMenu);
-		m_StrokeDirectionTypeChoice->callback(cb_brushChoice);
+		m_StrokeDirectionTypeChoice->menu(strokeDirectionTypeMenu);
+		m_StrokeDirectionTypeChoice->callback(cb_strokeDirectionChoice);
 
 		m_ClearCanvasButton = new Fl_Button(240,10,150,25,"&Clear Canvas");
 		m_ClearCanvasButton->user_data((void*)(this));
@@ -545,18 +562,20 @@ ImpressionistUI::ImpressionistUI() {
 		m_BrushLineWidthSlider->align(FL_ALIGN_RIGHT);
 		m_BrushLineWidthSlider->callback(cb_widthSlides);
 
+		// Add brush line angle slider to the dialog 
 		m_BrushLineAngleSlider = new Fl_Value_Slider(10, 140, 300, 20, "Line Angle");
 		m_BrushLineAngleSlider ->user_data((void*)(this));	// record self to be used by static callback functions
 		m_BrushLineAngleSlider->type(FL_HOR_NICE_SLIDER);
 		m_BrushLineAngleSlider->labelfont(FL_COURIER);
 		m_BrushLineAngleSlider->labelsize(12);
 		m_BrushLineAngleSlider->minimum(0);
-		m_BrushLineAngleSlider->maximum(40);
+		m_BrushLineAngleSlider->maximum(359);
 		m_BrushLineAngleSlider->step(1);
 		m_BrushLineAngleSlider->value(m_nAngle);
 		m_BrushLineAngleSlider->align(FL_ALIGN_RIGHT);
 		m_BrushLineAngleSlider->callback(cb_angleSlides);
 
+		// Add brush alpha slider to the dialog 
 		m_BrushAlphaSlider = new Fl_Value_Slider(10, 170, 300, 20, "Alpha");
 		m_BrushAlphaSlider->user_data((void*)(this));	// record self to be used by static callback functions
 		m_BrushAlphaSlider->type(FL_HOR_NICE_SLIDER);
