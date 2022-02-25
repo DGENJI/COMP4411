@@ -103,7 +103,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <StringPooling>true</StringPooling>
       <FunctionLevelLinking>false</FunctionLevelLinking>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
       <AdditionalIncludeDirectories>local\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>

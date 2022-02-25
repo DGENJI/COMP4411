@@ -113,6 +113,12 @@ int ImpressionistDoc::getAngle()
 	return m_pUI->getAngle();
 }
 
+// set the size 
+void ImpressionistDoc::setSize(int size)
+{
+	m_pUI->setSize(size);
+}
+
 // set the angle 
 void ImpressionistDoc::setAngle(int angle)
 {

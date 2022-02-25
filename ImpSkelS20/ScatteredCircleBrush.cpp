@@ -54,7 +54,7 @@ void ScatteredCircleBrush::BrushEnd(const Point source, const Point target)
 
 void ScatteredCircleBrush::rightMouseMovementBegin(const Point source, const Point target)
 {
-	glPointSize(1);
+	glLineWidth(1);
 	originPoint = source;
 }
 
