@@ -20,12 +20,15 @@
 [Rr]eleases/
 x64/
 x86/
+
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
 [Bb]in/
 [Oo]bj/
+
 [Ll]og/
+
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -39,9 +42,11 @@ Generated\ Files/
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
+
 # NUNIT
 *.VisualState.xml
 TestResult.xml
+
 
 # Build Results of an ATL Project
 [Dd]ebugPS/
@@ -122,6 +127,7 @@ _ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
 
+
 # JustCode is a .NET coding add-in
 .JustCode
 
@@ -182,6 +188,7 @@ PublishScripts/
 
 # NuGet Packages
 *.nupkg
+
 # The packages folder can be ignored because of Package Restore
 **/[Pp]ackages/*
 # except build/, which is used as an MSBuild target.
@@ -206,6 +213,7 @@ BundleArtifacts/
 Package.StoreAssociation.xml
 _pkginfo.txt
 *.appx
+
 
 # Visual Studio cache files
 # files ending in .cache can be ignored
@@ -255,8 +263,8 @@ ServiceFabricBackup/
 *.bim.layout
 *.bim_*.settings
 *.rptproj.rsuser
-*- Backup*.rdl
 
+*- Backup*.rdl
 # Microsoft Fakes
 FakesAssemblies/
 
@@ -291,6 +299,8 @@ paket-files/
 # FAKE - F# Make
 .fake/
 
+
+=======
 # JetBrains Rider
 .idea/
 *.sln.iml
@@ -337,4 +347,5 @@ ASALocalRun/
 .localhistory/
 
 # BeatPulse healthcheck temp database
+
 healthchecksdb

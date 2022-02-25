@@ -53,3 +53,31 @@ void PointBrush::BrushEnd( const Point source, const Point target )
 	// do nothing so far
 }
 
+void PointBrush::rightMouseMovementBegin(const Point source, const Point target)
+{
+	glPointSize(1);
+	originPoint = source;
+}
+
+void PointBrush::rightMouseMovementMove(const Point source, const Point target)
+{
+	ImpressionistDoc* pDoc = GetDocument();
+	ImpressionistUI* dlg = pDoc->m_pUI;
+
+	if (pDoc == NULL) {
+		printf("PointBrush::BrushMove  document is NULL\n");
+		return;
+	}
+	glBegin(GL_LINES);
+	glColor3ub(255, 0, 0);
+
+	glVertex2d(originPoint.x, originPoint.y);
+	glVertex2d(source.x, source.y);
+
+	glEnd();
+}
+
+void PointBrush::rightMouseMovementEnd(const Point source, const Point target)
+{
+	// do nothing so far
+}
