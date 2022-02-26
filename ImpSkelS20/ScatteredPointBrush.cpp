@@ -28,6 +28,9 @@ void ScatteredPointBrush::BrushMove(const Point source, const Point target)
 	ImpressionistDoc* pDoc = GetDocument();
 	ImpressionistUI* dlg = pDoc->m_pUI;
 	int size = pDoc->getSize();
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
 
 	for (int i = 0; i < size*4; i++)

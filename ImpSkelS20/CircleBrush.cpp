@@ -23,6 +23,8 @@ void CircleBrush::BrushMove(const Point source, const Point target)
 	int size = pDoc->getSize();
 	int n = 40;
 	double R = size / 2;
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glBegin(GL_POLYGON);
 	SetColor(source);
 	for (int i = 0; i < n; i++)
