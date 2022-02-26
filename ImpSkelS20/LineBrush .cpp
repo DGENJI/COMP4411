@@ -14,7 +14,7 @@ LineBrush::LineBrush(ImpressionistDoc* pDoc, char* name) :
 
 void LineBrush::BrushBegin(const Point source, const Point target)
 {
-	if(strokeDirectionType == BRUSH_DIRECTION)
+	if (strokeDirectionType == BRUSH_DIRECTION)
 	{
 		originPoint = source;
 	}
@@ -49,8 +49,6 @@ void LineBrush::BrushMove(const Point source, const Point target)
 	{
 	case SRM:
 		glLineWidth((float)width);
-		srand((unsigned)time(NULL));
-		r = (rand() % 40 + 1);
 		glBegin(GL_LINES);
 		SetColor(source);
 		glVertex2d(target.x + r * cos(an), target.y + r * sin(an));
@@ -61,17 +59,17 @@ void LineBrush::BrushMove(const Point source, const Point target)
 		glLineWidth((float)width);
 		glBegin(GL_LINES);
 		SetColor(source);
-		RGBPX1 = (colorPX1[0] * 0.299 + colorPX1[1] * 0.587 + colorPX1[2] * 0.144);
-		RGBPY1 = (colorPY1[0] * 0.299 + colorPY1[1] * 0.587 + colorPY1[2] * 0.144);
-		RGBPX2 = (colorPX2[0] * 0.299 + colorPX2[1] * 0.587 + colorPX2[2] * 0.144);
-		RGBPY2 = (colorPY2[0] * 0.299 + colorPY2[1] * 0.587 + colorPY2[2] * 0.144);
-		newAngle = atan2((RGBPY2 - RGBPY1) , (RGBPX2 - RGBPX1)) * 180.0f / M_PI;
+		RGBPX1 = (colorPX1[0] * 0.299 + colorPX1[1] * 0.587 + colorPX1[2] * 0.114);
+		RGBPY1 = (colorPY1[0] * 0.299 + colorPY1[1] * 0.587 + colorPY1[2] * 0.114);
+		RGBPX2 = (colorPX2[0] * 0.299 + colorPX2[1] * 0.587 + colorPX2[2] * 0.114);
+		RGBPY2 = (colorPY2[0] * 0.299 + colorPY2[1] * 0.587 + colorPY2[2] * 0.114);
+		newAngle = atan2((RGBPY2 - RGBPY1), (RGBPX2 - RGBPX1));
 		glVertex2d(target.x + r * cos(newAngle), target.y + r * sin(newAngle));
 		glVertex2d(target.x - r * cos(newAngle), target.y - r * sin(newAngle));
 		glEnd();
 		break;
 	case BRUSH_DIRECTION:
-		float angle = atan2((float)(source.y - originPoint.y) , (float)(source.x - originPoint.x));
+		float angle = atan2((float)(source.y - originPoint.y), (float)(source.x - originPoint.x));
 		glLineWidth((float)width);
 		glBegin(GL_LINES);
 		SetColor(source);
@@ -128,6 +126,6 @@ void LineBrush::rightMouseMovementEnd(const Point source, const Point target)
 	{
 		pDoc->setSize((int)sqrt(pow((source.y - originPoint.y), 2) + pow((source.x - originPoint.x), 2)));
 		pDoc->setAngle((int)angle);
-     }
+	}
 }
 
