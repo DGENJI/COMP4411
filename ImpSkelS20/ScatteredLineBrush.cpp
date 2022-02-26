@@ -130,5 +130,18 @@ void ScatteredLineBrush::rightMouseMovementMove(const Point source, const Point 
 
 void ScatteredLineBrush::rightMouseMovementEnd(const Point source, const Point target)
 {
-	// do nothing so far
+	float angle = atan(((float)(source.y - originPoint.y)) / ((float)(source.x - originPoint.x))) * 180.0f / 3.1415926;
+	if (source.x - originPoint.x < 0)
+	{
+		angle = 180.0 + angle;
+	}
+	else if (source.y - originPoint.y < 0) {
+		angle = 360.0 + angle;
+	}
+	ImpressionistDoc* pDoc = GetDocument();
+	if (strokeDirectionType == SRM)
+	{
+		pDoc->setSize((int)sqrt(pow((source.y - originPoint.y), 2) + pow((source.x - originPoint.x), 2)));
+		pDoc->setAngle((int)angle);
+	}
 }
