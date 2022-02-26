@@ -32,7 +32,7 @@ void ScatteredLineBrush::BrushMove(const Point source, const Point target)
 	float r = size / 2;
 	float an = 2 * M_PI * angle / 360;
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		int xr = rand() % size;
 		int yr = rand() % size;
@@ -72,7 +72,7 @@ void ScatteredLineBrush::BrushMove(const Point source, const Point target)
 			RGBPY1 = (colorPY1[0] * 0.299 + colorPY1[1] * 0.587 + colorPY1[2] * 0.144);
 			RGBPX2 = (colorPX2[0] * 0.299 + colorPX2[1] * 0.587 + colorPX2[2] * 0.144);
 			RGBPY2 = (colorPY2[0] * 0.299 + colorPY2[1] * 0.587 + colorPY2[2] * 0.144);
-			newAngle = atan2((RGBPY2 - RGBPY1), (RGBPX2 - RGBPX1)) * 180.0f / M_PI;
+			newAngle = atan2((RGBPY2 - RGBPY1), (RGBPX2 - RGBPX1));
 			glVertex2d(newp.x + r * cos(newAngle), newp.y + r * sin(newAngle));
 			glVertex2d(newp.x - r * cos(newAngle), newp.y - r * sin(newAngle));
 			glEnd();
@@ -80,7 +80,7 @@ void ScatteredLineBrush::BrushMove(const Point source, const Point target)
 		case BRUSH_DIRECTION:
 			if(!((source.y - originPoint.y == 0) && (source.x - originPoint.x == 0)))
 			{
-				float angle = atan2((float)(source.y - originPoint.y), (float)(source.x - originPoint.x)) * 180.0f / M_PI;
+				float angle = atan2((float)(source.y - originPoint.y), (float)(source.x - originPoint.x));
 				glLineWidth((float)width);
 				glBegin(GL_LINES);
 				SetColor(newp);

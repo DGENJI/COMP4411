@@ -256,6 +256,18 @@ void ImpressionistUI::cb_brushChoice(Fl_Widget* o, void* v)
 
 
 	pDoc->setBrushType(type);
+	if (type == BRUSH_LINES || type == BRUSH_SCATTERED_LINES)
+	{
+		pUI->m_StrokeDirectionTypeChoice->activate();
+		pUI->m_BrushLineWidthSlider->activate();
+		pUI->m_BrushLineAngleSlider->activate();
+	}
+	else
+	{
+		pUI->m_StrokeDirectionTypeChoice->deactivate();
+		pUI->m_BrushLineWidthSlider->deactivate();
+		pUI->m_BrushLineAngleSlider->deactivate();
+	}
 }
 
 //-------------------------------------------------------------
@@ -272,7 +284,6 @@ void ImpressionistUI::cb_strokeDirectionChoice(Fl_Widget* o, void* v)
 
 
 	pDoc->setStrokeDirectionType(type);
-
 }
 
 //------------------------------------------------------------
@@ -588,5 +599,7 @@ ImpressionistUI::ImpressionistUI() {
 		m_BrushAlphaSlider->align(FL_ALIGN_RIGHT);
 		m_BrushAlphaSlider->callback(cb_alphaSlides);
     m_brushDialog->end();	
-
+	m_StrokeDirectionTypeChoice->deactivate();
+	m_BrushLineWidthSlider->deactivate();
+	m_BrushLineAngleSlider->deactivate();
 }

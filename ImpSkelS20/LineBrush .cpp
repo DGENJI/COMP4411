@@ -65,7 +65,7 @@ void LineBrush::BrushMove(const Point source, const Point target)
 		RGBPY1 = (colorPY1[0] * 0.299 + colorPY1[1] * 0.587 + colorPY1[2] * 0.144);
 		RGBPX2 = (colorPX2[0] * 0.299 + colorPX2[1] * 0.587 + colorPX2[2] * 0.144);
 		RGBPY2 = (colorPY2[0] * 0.299 + colorPY2[1] * 0.587 + colorPY2[2] * 0.144);
-		newAngle = atan2((RGBPY2 - RGBPY1) , (RGBPX2 - RGBPX1)) * 180.0f / M_PI;
+		newAngle = atan2((RGBPY2 - RGBPY1) , (RGBPX2 - RGBPX1));
 		glVertex2d(target.x + r * cos(newAngle), target.y + r * sin(newAngle));
 		glVertex2d(target.x - r * cos(newAngle), target.y - r * sin(newAngle));
 		glEnd();
