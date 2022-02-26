@@ -32,6 +32,9 @@ void ScatteredLineBrush::BrushMove(const Point source, const Point target)
 	float r = size / 2;
 	float an = 2 * M_PI * angle / 360;
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	for (int i = 0; i < 4; i++)
 	{
 		int xr = rand() % size;

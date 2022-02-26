@@ -335,7 +335,7 @@ void ImpressionistUI::cb_angleSlides(Fl_Widget* o, void* v)
 //-----------------------------------------------------------
 void ImpressionistUI::cb_alphaSlides(Fl_Widget* o, void* v)
 {
-	((ImpressionistUI*)(o->user_data()))->m_nAlpha = int(((Fl_Slider*)o)->value());
+	((ImpressionistUI*)(o->user_data()))->m_nAlpha = double(((Fl_Slider*)o)->value());
 }
 
 //---------------------------------- per instance functions --------------------------------------
@@ -407,6 +407,7 @@ int ImpressionistUI::getAngle()
 //------------------------------------------------
 double ImpressionistUI::getAlpha()
 {
+	double alpha = m_nAlpha;
 	return m_nAlpha;
 }
 

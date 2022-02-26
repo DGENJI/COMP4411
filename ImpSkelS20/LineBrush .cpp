@@ -45,6 +45,9 @@ void LineBrush::BrushMove(const Point source, const Point target)
 	GLubyte* colorPX2 = pDoc->GetOriginalPixel(pX2);
 	GLubyte* colorPY2 = pDoc->GetOriginalPixel(pY2);
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	switch (strokeDirectionType)
 	{
 	case SRM:

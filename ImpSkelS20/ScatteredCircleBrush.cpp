@@ -28,6 +28,9 @@ void ScatteredCircleBrush::BrushMove(const Point source, const Point target)
 	int n = 40;
 	double R = size / 2;
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	for (int i = 0; i < 4; i++)
 	{
 		int xr = rand() % size;
